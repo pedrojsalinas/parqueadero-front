@@ -1,0 +1,37 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-4 mt-3" *ngFor="let empresa of empresas" fxLayout="row" fxLayoutAlign="stretch">
+      <mat-card class="w-100 ">
+        <mat-card-header>
+          <mat-card-title>{{empresa.nombre}}</mat-card-title>
+          <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+        </mat-card-header>
+        <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+        <mat-card-content>
+          <mat-list>
+            <mat-list-item>
+              <!-- <mat-icon mat-list-icon>note</mat-icon> -->
+              <h4 mat-line>Dirección: {{empresa.direccion}}</h4>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <!-- <mat-icon mat-list-icon>note</mat-icon> -->
+              <h4 mat-line>Precio: {{empresa.precio}}</h4>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <!-- <mat-icon mat-list-icon>note</mat-icon> -->
+              <h4 mat-line>Descuento: {{empresa.descuento}}</h4>
+            </mat-list-item>
+          </mat-list>
+       
+        </mat-card-content>
+        <mat-card-actions align="right">
+          <button mat-stroked-button color="primary" (click)="reservar(empresa)">RESERVAR</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+
+</div>

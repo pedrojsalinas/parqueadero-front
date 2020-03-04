@@ -1,0 +1,45 @@
+<div class="dialog-content-wrapper">
+  <div mat-dialog-content>
+    <form [formGroup]="reservaForm">
+      <div>
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>Tarjeta</mat-label>
+          <!-- <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+          <input name="tarjeta" formControlName="tarjetaId" matInput required> -->
+           <mat-select formControlName="tarjetaId">
+             <mat-option *ngFor="let tarjeta of tarjetas" [value]="tarjeta.id">
+               {{tarjeta.id}} - {{tarjeta.saldo | currency}}
+             </mat-option>
+           </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="12hr-example">
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>Hora Inicio</mat-label>
+          <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+          <input formControlName="horaInicio" matInput required placeholder="12hr format (default settings)"
+            aria-label="12hr format"
+            [ngxTimepicker]="default" readonly>
+        </mat-form-field>
+        <ngx-material-timepicker #default></ngx-material-timepicker>
+      </div>
+      <div class="12hr-example">
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>Hora Salida</mat-label>
+          <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+          <input matInput required formControlName="horaSalida" placeholder="12hr format (default settings)"
+            aria-label="12hr format"
+            [ngxTimepicker]="horaSalida" readonly>
+        </mat-form-field>
+        <ngx-material-timepicker #horaSalida></ngx-material-timepicker>
+      </div>
+    </form>
+  </div>
+  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+
+    <button mat-button class="save-button" (click)="matDialogRef.close(reservaForm)" [disabled]="reservaForm.invalid"
+      aria-label="SAVE">
+      RESERVAR
+    </button>
+  </div>
+</div>
