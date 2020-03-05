@@ -4,19 +4,19 @@
       <div>
         <mat-form-field appearance="outline" fxFlex>
           <mat-label>Tarjeta</mat-label>
-          <!-- <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
-          <input name="tarjeta" formControlName="tarjetaId" matInput required> -->
-           <mat-select formControlName="tarjetaId">
+          <mat-icon matSuffix class="secondary-text">credit_card</mat-icon>
+          <input name="tarjeta" formControlName="tarjetaId" matInput required>
+           <!-- <mat-select formControlName="tarjetaId">
              <mat-option *ngFor="let tarjeta of tarjetas" [value]="tarjeta.id">
                {{tarjeta.id}} - {{tarjeta.saldo | currency}}
              </mat-option>
-           </mat-select>
+           </mat-select> -->
         </mat-form-field>
       </div>
       <div class="12hr-example">
         <mat-form-field appearance="outline" fxFlex>
           <mat-label>Hora Inicio</mat-label>
-          <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+          <mat-icon matSuffix class="secondary-text">access_time</mat-icon>
           <input formControlName="horaInicio" matInput required placeholder="12hr format (default settings)"
             aria-label="12hr format"
             [ngxTimepicker]="default" readonly>
@@ -26,7 +26,7 @@
       <div class="12hr-example">
         <mat-form-field appearance="outline" fxFlex>
           <mat-label>Hora Salida</mat-label>
-          <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+          <mat-icon matSuffix class="secondary-text">access_time</mat-icon>
           <input matInput required formControlName="horaSalida" placeholder="12hr format (default settings)"
             aria-label="12hr format"
             [ngxTimepicker]="horaSalida" readonly>

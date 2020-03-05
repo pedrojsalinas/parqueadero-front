@@ -13,7 +13,10 @@ import { ReservasService } from 'src/app/shared/controllers/reservas/reservas.se
 })
 export class ReservasComponent implements OnInit {
   empresas: Empresa[];
+  empresa: Empresa;
   dialogRef: any;
+  espacios: [];
+  mostrar = false;
 
 
   constructor(
@@ -40,9 +43,16 @@ export class ReservasComponent implements OnInit {
         if (!response) {
           return;
         }
-        // metodo para agregar
         console.log("TCL: EmpresasComponent -> response.getRawValue()", response.getRawValue())
         this.reservaService.registrarReserva(response.getRawValue())
       });
+  }
+
+  mostrarEspacios(empresa) {
+    this.espacios = empresa.espacios;
+    this.empresa = empresa;
+    this.mostrar = true;
+    console.log("ReservasComponent -> mostrarEspacios -> this.espacios", this.espacios)
+
   }
 }

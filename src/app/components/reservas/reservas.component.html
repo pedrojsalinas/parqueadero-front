@@ -1,37 +1,65 @@
 <div class="container mt-4">
-  <div class="row">
-    <div class="col-4 mt-3" *ngFor="let empresa of empresas" fxLayout="row" fxLayoutAlign="stretch">
-      <mat-card class="w-100 ">
-        <mat-card-header>
-          <mat-card-title>{{empresa.nombre}}</mat-card-title>
-          <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-        </mat-card-header>
-        <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
-        <mat-card-content>
-          <mat-list>
-            <mat-list-item>
-              <!-- <mat-icon mat-list-icon>note</mat-icon> -->
-              <h4 mat-line>Dirección: {{empresa.direccion}}</h4>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>
-              <!-- <mat-icon mat-list-icon>note</mat-icon> -->
-              <h4 mat-line>Precio: {{empresa.precio}}</h4>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>
-              <!-- <mat-icon mat-list-icon>note</mat-icon> -->
-              <h4 mat-line>Descuento: {{empresa.descuento}}</h4>
-            </mat-list-item>
-          </mat-list>
-       
-        </mat-card-content>
-        <mat-card-actions align="right">
-          <button mat-stroked-button color="primary" (click)="reservar(empresa)">RESERVAR</button>
-        </mat-card-actions>
-      </mat-card>
+  <ng-container *ngIf="!mostrar; else elseTemplate">
+    <div class="row">
+      <div class="col-4 mt-3" *ngFor="let empresa of empresas" fxLayout="row" fxLayoutAlign="stretch">
+        <mat-card class="w-100 ">
+          <mat-card-header>
+            <mat-card-title>{{empresa.nombre}}</mat-card-title>
+            <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+          </mat-card-header>
+          <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+          <mat-card-content>
+            <mat-list>
+              <mat-list-item>
+                <!-- <mat-icon mat-list-icon>note</mat-icon> -->
+                <h4 mat-line>Dirección: {{empresa.direccion}}</h4>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>
+                <!-- <mat-icon mat-list-icon>note</mat-icon> -->
+                <h4 mat-line>Precio: {{empresa.precio}}</h4>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>
+                <!-- <mat-icon mat-list-icon>note</mat-icon> -->
+                <h4 mat-line>Descuento: {{empresa.descuento}}</h4>
+              </mat-list-item>
+            </mat-list>
+
+          </mat-card-content>
+          <mat-card-actions align="right">
+            <button mat-stroked-button color="accent" (click)="mostrarEspacios(empresa)">ESPACIOS</button>
+            <button mat-stroked-button color="primary" (click)="reservar(empresa)">RESERVAR</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
     </div>
-  </div>
-
-
+  </ng-container>
+  <ng-template #elseTemplate>
+    <button mat-icon-button color="primary" (click)="mostrar = false">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2 class="text-center my-2">{{empresa.nombre}}</h2>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Cubierto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let espacio of espacios"
+          [ngClass]="{'table-danger': espacio.estado == 0, 'table-success': espacio.estado == 1}">
+          <th>{{espacio.id}}</th>
+          <td>{{espacio.estado}}</td>
+          <td>{{espacio.cubierto}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="z-index:5; position : fixed;display : flex; 
+align-self : flex-end;bottom : 5%; margin-bottom : 38px; right: 2%;">
+      <button mat-fab color="primary" style="margin-right : 14px;" (click)="reservar(empresa)">Reserva</button>
+    </div>
+  </ng-template>
 </div>
